@@ -2,11 +2,10 @@ package vo;
 
 public class CircleVo {
 	
+	private int aptno;
 	private String aptname;
 	private double aptlat;
 	private double aptlng;
-	private double catlat;
-	private double catlng;
 	
 	public String getAptname() {
 		return aptname;
@@ -26,24 +25,16 @@ public class CircleVo {
 	public void setAptlng(double aptlng) {
 		this.aptlng = aptlng;
 	}
-	public double getCatlat() {
-		return catlat;
+	public int getAptno() {
+		return aptno;
 	}
-	public void setCatlat(double catlat) {
-		this.catlat = catlat;
-	}
-	public double getCatlng() {
-		return catlng;
-	}
-	public void setCatlng(double catlng) {
-		this.catlng = catlng;
+	public void setAptno(int aptno) {
+		this.aptno = aptno;
 	}
 	@Override
 	public String toString() {
-		return "CircleVo [aptname=" + aptname + ", aptlat=" + aptlat + ", aptlng=" + aptlng + ", catlat=" + catlat
-				+ ", catlng=" + catlng + "]";
+		return "CircleVo [aptno=" + aptno + ", aptname=" + aptname + ", aptlat=" + aptlat + ", aptlng=" + aptlng + "]";
 	}
-	
 	
 
 }

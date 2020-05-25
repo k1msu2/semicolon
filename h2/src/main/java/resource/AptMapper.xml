@@ -5,34 +5,49 @@
 
 <mapper namespace="resource.AptMapper">
 	<select id="selectAptinfo" resultType="vo.AptVo">
-		select brand, apt_tb.name as "name", 
-		addr, lat, lng from	apt_tb
+		select brand, apt_tb.name
+		as "name",
+		addr, lat, lng from apt_tb
 		left join aptinfo_tb on apt_tb.id = aptinfo_tb.id
 	</select>
-	
+
 	<select id="selectAptinfo222" resultType="vo.AptVo2">
-		select id, name, addr, lat, lng from apt_tb
+		select id, name, addr,
+		lat, lng from apt_tb
 	</select>
 	
-	<select id="selectAptGuLoc" parameterType="string" resultType="vo.AptVo2">
+	<select id="selectAptGuLoc" parameterType="string"
+		resultType="vo.AptVo">
+		SELECT s.no, s.id, s.name, s.lat, s.lng
+		FROM apt_tb s 
+		where s.addr 
+		like '%'||#{gu}||'%'
+	</select>
+
+
+	<select id="selectAptGuLoc_old" parameterType="string"
+		resultType="vo.AptVo2">
 		SELECT s.id, s.name, h.name, s.lat, s.lng
-		FROM apt_tb s, apt_tb h
+		FROM apt_tb s,
+		apt_tb h
 		where s.addr
 		like '%'||#{gu}||'%' and h.id=0
-		and ST_DWithin(s.geom, h.geom, 100, false)
-		order by s.name	
+		and
+		ST_DWithin(s.geom, h.geom, 100, false)
+		order by s.name
 	</select>
-	
-	<select id="selectAptGuLoc2" parameterType="string" resultType="vo.AptVo">
-		select brand as "id", name, addr, lat, lng 
-		from apt_tb 
-		left join aptinfo_tb 
+
+	<select id="selectAptGuLoc2" parameterType="string"
+		resultType="vo.AptVo">
+		select brand as "id", name, addr, lat, lng
+		from apt_tb
+		left join aptinfo_tb
 		on apt_tb.id = aptinfo_tb.id where gu like
 		'%'||#{gu}||'%'
 	</select>
-	
+
 	<!-- select id, name, addr, lat, lng from apt_tb where addr like '%'||#{gu}||'%' -->
-	
+
 </mapper>
 	
 

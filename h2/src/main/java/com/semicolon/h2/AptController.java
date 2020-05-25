@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dao.AptDaoImpl;
 import vo.AptVo;
-import vo.CafeVo;
 
 @Controller
 public class AptController {
@@ -37,6 +36,7 @@ public class AptController {
 		List<AptVo> list = new ArrayList<>();
 		list = dao.listGu(gu);
 		mav.addObject("aptListAll", list);
+
 		mav.setViewName("map");
 		System.out.println(list);
 		return mav;

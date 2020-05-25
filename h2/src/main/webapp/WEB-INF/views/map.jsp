@@ -32,8 +32,8 @@ ${vo.catlng}
  -->
 <body>
 	<div>
-		<a href="/h2/apt/강남구">아파트</a>
-		<a href="/h2/cafe/500/강남구">까페</a>
+		<a href="/h2/apt/강남구">강남구 아파트</a><br>
+		<a href="/h2/search/강남구">강남구 반경500m 내 까페 & 지하철</a>
 	</div>
 
 	<c:if test="${empty aptListAll}">
@@ -82,12 +82,12 @@ ${vo.catlng}
 		}
 
 		// 마커를 생성하고 지도위에 표시하는 함수입니다
-		function addMarker(position, addr, name, markerImage) {
-
+		function addMarker(position, addr, name, no, markerImage) {
+			
 			// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 			var iwContent = '<div style="padding:5px;">' + name + '</div><hr>'
 					+ '<div style="padding:5px;">' + addr + '</div><hr>'
-					+ '<div style="padding:5px;">' + position + '</div><hr>'
+					+ '<div style="padding:5px;">' + no + '</div><hr>'
 
 			var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
@@ -178,7 +178,7 @@ ${vo.catlng}
 			 makeOutListener(infowindow)); */
 
 			// 마커가 지도 위에 표시되도록 설정합니다
-			//marker1.setMap(map);
+			marker1.setMap(map);
 			//marker2.setMap(map);
 			// 생성된 마커를 배열에 추가합니다
 			//markers.push(marker1);
@@ -189,9 +189,10 @@ ${vo.catlng}
 
 	<c:if test="${!empty aptListAll}">
 		<script>
+		// addMarker(position, addr, name, no, markerImage
 			<c:forEach var="vo" items="${aptListAll}" varStatus="status">
-			addMarker(new kakao.maps.LatLng("${vo.lat}", "${vo.lng}"),
-					"${vo.addr}", "${vo.name}");
+			addMarker(new kakao.maps.LatLng("${vo.lat}", "${vo.lng}"),"${vo.addr}",
+					"${vo.name}", "${vo.no}");
 
 			</c:forEach>
 			/* setMarkers(map); */
@@ -211,9 +212,10 @@ ${vo.catlng}
 
 	<c:if test="${!empty cafeListAll}">
 		<script>
+		
 			<c:forEach var="vo" items="${cafeListAll}" varStatus="status">
-			addMarker(new kakao.maps.LatLng("${vo.lat}", "${vo.lng}"),
-					"${vo.addr}", "${vo.name}", cafeImage);
+			addMarker(new kakao.maps.LatLng("${vo.lat}", "${vo.lng}"),"${vo.addr}",
+					"${vo.name}", "${vo.no}");
 			</c:forEach>
 		</script>
 	</c:if>
@@ -222,8 +224,7 @@ ${vo.catlng}
 		<script>
 			<c:forEach var="vo" items="${circleListAll}" varStatus="status">
 			addMarkerCircle(new kakao.maps.LatLng("${vo.aptlat}",
-					"${vo.aptlng}"), new kakao.maps.LatLng("${vo.catlat}",
-					"${vo.catlng}"), "${vo.aptname}");
+					"${vo.aptlng}"), "${vo.aptname}");
 			</c:forEach>
 		</script>
 	</c:if>

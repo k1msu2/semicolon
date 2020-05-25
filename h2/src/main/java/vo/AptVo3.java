@@ -1,19 +1,13 @@
 package vo;
 
-public class AptVo {
+public class AptVo3 {
 
-	private int no;
 	private int id;
 	private String name;
 	private String addr;
-	private double lat;
-	private double lng;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
+	private int lat;
+	private int lng;
+	
 	public int getId() {
 		return id;
 	}
@@ -32,18 +26,24 @@ public class AptVo {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public double getLat() {
+	public int getLat() {
 		return lat;
 	}
-	public void setLat(double lat) {
+	public void setLat(int lat) {
 		this.lat = lat;
 	}
-	public double getLng() {
+	public int getLng() {
 		return lng;
 	}
-	public void setLng(double lng) {
+	public void setLng(int lng) {
 		this.lng = lng;
 	}
 	
-
+	@Override
+	public String toString() {
+		return "AptVo [id=" + id + ", name=" + name + ", addr=" + addr + ", lat=" + lat + ", lng=" + lng + "]";
+	}
+	
+	
+	
 }

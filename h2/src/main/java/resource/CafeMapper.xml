@@ -37,16 +37,15 @@
 
 	<select id="selectCafeIn500" parameterType="string"
 		resultType="vo.CircleVo">
-		SELECT distinct on(s.name) s.name as aptname , s.lat as aptlat, s.lng as aptlng
-		FROM apt_tb s, cafe_tb h where s.addr like '%'||#{gu}||'%' and ST_DWithin(s.geom,
-		h.geom, 200, false)
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname , apt.lat as aptlat,
+		apt.lng as aptlng
+		FROM apt_tb apt, cafe_tb cat where apt.gu like '강남구' and
+		ST_DWithin(apt.geom, cat.geom, 500, false)
 		intersect
-		SELECT distinct on(s.name) s.name as aptname , s.lat as aptlat, s.lng as aptlng
-		FROM apt_tb s, station_tb h where s.addr like '%'||#{gu}||'%' and
-		ST_DWithin(s.geom, h.geom, 200, false)
-		<!-- SELECT s.name as aptname, s.lat as aptlat, s.lng as aptlng, h.lat 
-			as catlat, h.lng as catlng FROM apt_tb s, station_tb h where s.addr like 
-			'%'||#{gu}||'%' and ST_DWithin(s.geom, h.geom, 500, false); -->
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname , apt.lat as aptlat,
+		apt.lng as aptlng
+		FROM apt_tb apt, station_tb cat where apt.gu like '강남구' and
+		ST_DWithin(apt.geom, cat.geom, 500, false)
 	</select>
 
 </mapper>
