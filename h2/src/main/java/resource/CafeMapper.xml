@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.CafeMapper">
+
+	<select id="selectCafeinfoOnlyCafeTb" resultType="vo.CafeVo">
+		select id name,
+		addr, lat, lng from cafe_tb
+	</select>
+
+	<select id="selectCafeinfo" resultType="vo.CafeVo">
+		select brand as "id",
+		name, addr, lat, lng from cafe_tb left join cafeinfo_tb on cafe_tb.id
+		= cafeinfo_tb.id
+	</select>
+
+	<select id="selectCafeGuLoc" parameterType="string"
+		resultType="vo.CafeVo">
+		select id, name, addr, lat, lng
+		from cafe_tb where addr
+		like
+		'%'||#{gu}||'%'
+	</select>
+
+	<select id="selectCafeGuLoc2" parameterType="string"
+		resultType="vo.CafeVo">
+		select brand as "id", name, addr, lat, lng
+		from cafe_tb
+		left
+		join cafeinfo_tb
+		on cafe_tb.id = cafeinfo_tb.id
+		where addr
+		like
+		'%'||#{gu}||'%'
+	</select>
+
+	<select id="selectCafeIn500" parameterType="string"
+		resultType="vo.CircleVo">
+		SELECT distinct on(s.name) s.name as aptname , s.lat as aptlat, s.lng as aptlng
+		FROM apt_tb s, cafe_tb h where s.addr like '%'||#{gu}||'%' and ST_DWithin(s.geom,
+		h.geom, 200, false)
+		intersect
+		SELECT distinct on(s.name) s.name as aptname , s.lat as aptlat, s.lng as aptlng
+		FROM apt_tb s, station_tb h where s.addr like '%'||#{gu}||'%' and
+		ST_DWithin(s.geom, h.geom, 200, false)
+		<!-- SELECT s.name as aptname, s.lat as aptlat, s.lng as aptlng, h.lat 
+			as catlat, h.lng as catlng FROM apt_tb s, station_tb h where s.addr like 
+			'%'||#{gu}||'%' and ST_DWithin(s.geom, h.geom, 500, false); -->
+	</select>
+
+</mapper>
+	
+

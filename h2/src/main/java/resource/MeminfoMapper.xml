@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.MeminfoMapper">
+
+    <select id="selectMeminfo" resultType="vo.MeminfoVO">
+		select mem_userid, mem_password, mem_username, mem_email, mem_birthday, mem_sex, mem_phone, mem_address, 
+		       mem_register_date, mem_photo, mem_is_employer from meminfo
+	</select>
+	
+	<select id="selectMeminfoOne" parameterType="string" resultType="vo.MeminfoVO">
+		select * from meminfo where mem_userid = #{mem_userid}
+	</select>
+	
+	<insert id="insertMeminfo" parameterType="vo.MeminfoVO">
+		insert into meminfo (mem_userid, mem_password, mem_username, mem_email, mem_birthday, mem_sex, mem_phone, mem_address, mem_register_date, mem_photo, mem_is_employer) values
+		 (#{mem_userid}, #{mem_password}, #{mem_username}, #{mem_email}, #{mem_birthday}, #{mem_sex}, #{mem_phone}, #{mem_address}, #{mem_register_date}, #{mem_photo}, #{mem_is_employer})
+	</insert>
+	
+	<update id="updateMeminfo" parameterType="vo.MeminfoVO">
+		update meminfo set
+		mem_password = #{mem_password}, mem_username = #{mem_username}, mem_email = #{mem_email}, mem_birthday = #{mem_birthday}, 
+		mem_phone = #{mem_phone}, mem_address = #{mem_address}, mem_register_date = #{mem_register_date}, mem_photo = #{mem_photo}, 
+		mem_is_employer = #{mem_is_employer} where mem_userid = #{mem_userid}
+	</update>
+	
+	<delete id="deleteMeminfo" parameterType="string">
+		delete from meminfo where mem_userid = #{mem_userid}
+	</delete>
+	
+</mapper>

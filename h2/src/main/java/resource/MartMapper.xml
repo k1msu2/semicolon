@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.MartMapper">
+
+    <select id="selectMartinfo" resultType="vo.MartVo">
+		select id, name, addr, lat, lng from mart_tb
+	</select>
+
+</mapper>
+	
+
