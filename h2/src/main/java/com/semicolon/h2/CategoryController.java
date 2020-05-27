@@ -29,5 +29,7 @@ public class CategoryController {
 		System.out.println(list);
 		return mav;
 	}
+	
+	
 
 }

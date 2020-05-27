@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.AptDaoImpl;
 import vo.AptVo;
@@ -29,8 +32,9 @@ public class AptController {
 		return mav;
 	}
 	
+	// 뷰 렌더링 다시 하는 함수
 	@RequestMapping("/apt/{gu}")
-	public ModelAndView cafe(AptVo vo, @PathVariable String gu) {
+	public ModelAndView aptgu(AptVo vo, @PathVariable String gu) {
 		System.out.println(gu);
 		ModelAndView mav = new ModelAndView();
 		List<AptVo> list = new ArrayList<>();
@@ -41,4 +45,6 @@ public class AptController {
 		System.out.println(list);
 		return mav;
 	}
+	
+
 }

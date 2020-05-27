@@ -2,6 +2,9 @@ package com.semicolon.h2;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class MainController {
@@ -21,4 +24,10 @@ public class MainController {
 		return "place";
 	}
 	
+	@RequestMapping("/viewtest")
+	public String viewtet() {
+		return "map2";
+	}
+
+
 }
