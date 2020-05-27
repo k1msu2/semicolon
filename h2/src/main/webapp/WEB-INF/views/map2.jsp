@@ -9,9 +9,7 @@
 <jsp:include page="header.jsp" />
 
 <body>
-	<script>
 
-	</script>
 	<div class="topnav">
 		<a class="active" href="#home">AH!</a> <a href="#about">APT</a> <a
 			href="#contact">HERE</a>
@@ -23,14 +21,15 @@
 		</div>
 	</div>
 
+
 	<div class="map_wrap">
 		<div id="map" style="width: 100%; height: 130%; position: relative; overflow: hidden;"></div>
 		<div id="category">
 			<ul>
 				<li id="BK9" data-order="0"> &nbsp;서울시&nbsp;>
-				 <a href="#" id = "provName1" onclick="showProvince()">&nbsp;강남구&nbsp;</a>
+				 <a href="#" id = "provName1" onclick="showProvince()">&nbsp;구선택&nbsp;</a>
 				 >
-				 <a href="#" id = "townName1" onclick="showTown()">&nbsp;역삼동&nbsp;</a>
+				 <a href="#" id = "townName1" onclick="showTown()">&nbsp;동선택&nbsp;</a>
 				</li>
 			</ul>
 		</div>
@@ -46,30 +45,12 @@
 		
 		<!-- 나중에 리스트는 innerHTML 로 등록 할 예정  -->
 		<div class="dropdown" id="list1">
-			<div class="dropdown-content">
-				 <a href="#" onclick="showGu('마포구')">마포구</a>
-				 <a href="#" onclick="showGu('용산구')">용산구</a>
-				 <a href="#" onclick="showGu('강남구')">강남구</a>
-				 <a href="#">Link 1</a>
-				 <a href="#">Link 2</a>
-				 <a href="#">Link 3</a>
-				 <a href="#">Link 1</a>
-				 <a href="#">Link 2</a>
-				 <a href="#">Link 3</a>
-			</div>
+ 			<div class="dropdown-content" id="contentList1">
+ -->			</div>
 		</div>
 		
 		<div class="dropdown" id="list2">
-			<div class="dropdown-content">
-				 <a href="/h2/dong/강남구/역삼동" onclick="chooseTown('역삼동')">역삼동</a>
-				 <a href="/h2/dong/강남구/삼성동" onclick="chooseTown('삼성동')">삼성동</a>
-				 <a href="/h2/dong/강남구/신사동" onclick="chooseTown('신사동')">신사동</a>
-				 <a href="#">Link 1</a>
-				 <a href="#">Link 2</a>
-				 <a href="#">Link 3</a>
-				 <a href="#">Link 1</a>
-				 <a href="#">Link 2</a>
-				 <a href="#">Link 3</a>
+			<div class="dropdown-content" id ="contentList2">
 			</div>
 		</div>
 		
@@ -114,16 +95,17 @@
 	<c:if test="${!empty aptListAll}"> <jsp:include page="aptlist.jsp" /> </c:if>
 	<c:if test="${!empty catListAll}"> <jsp:include page="catlist.jsp" /> </c:if>
 	
-
 	<script>
 		// 아파트 클러스터링 형식으로 출력
-
-		
 		window.onload = function(){
 			// 강남구 역삼동을 센터로??
 			// 서울시를 센터로??
 			// 제일 첫화면 렌더링할 함수 만들기
 		};
+	</script>
+	
+		<script>
+
 	</script>
 </body>
 </html>
