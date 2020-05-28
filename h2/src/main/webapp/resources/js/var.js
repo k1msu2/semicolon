@@ -15,3 +15,12 @@ var clusterer = new kakao.maps.MarkerClusterer({
 	disableClickZoom : true
 // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
 });
+
+// 마커를 생성합니다
+var markers =[];
+var marker1=new kakao.maps.Marker();
+var marker2;
+
+var centerPosition;
+var drawingCircle=new kakao.maps.Circle();
+var circleOptions;

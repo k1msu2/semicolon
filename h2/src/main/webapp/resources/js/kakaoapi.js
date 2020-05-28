@@ -60,8 +60,8 @@ function setMarkers(map) {
 // 마커를 생성하고 지도위에 표시하는 함수입니다
 function addMarkerCircle(position1, position2, name) {
 
-	var centerPosition = position1;
-	var drawingCircle = new kakao.maps.Circle({
+	centerPosition = position1;
+	drawingCircle = new kakao.maps.Circle({
 		strokeWeight : 1, // 선의 두께입니다
 		strokeColor : '#00a0e9', // 선의 색깔입니다
 		strokeOpacity : 0.1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
@@ -70,7 +70,7 @@ function addMarkerCircle(position1, position2, name) {
 		fillOpacity : 0.2
 	// 채우기 불투명도입니다
 	});
-	var circleOptions = {
+	circleOptions = {
 		center : centerPosition,
 		radius : 500
 	};
@@ -90,12 +90,12 @@ function addMarkerCircle(position1, position2, name) {
 	 */
 
 	// 마커를 생성합니다
-	var marker1 = new kakao.maps.Marker({
+	marker1 = new kakao.maps.Marker({
 		position : position1,
 		clickable : true
 	});
 
-	var marker2 = new kakao.maps.Marker({
+	marker2 = new kakao.maps.Marker({
 		position : position2,
 		clickable : true
 	});
@@ -115,6 +115,7 @@ function addMarkerCircle(position1, position2, name) {
 	//map.setCenter(position1);
 	// marker2.setMap(map);
 	// 생성된 마커를 배열에 추가합니다
-	// markers.push(marker1);
+	markers.push(marker1);
+	markers.push(drawingCircle);
 	// markers.push(marker2);
 }

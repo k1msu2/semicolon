@@ -17,8 +17,8 @@
 	top: 10px;
 	left: 10px;
 	border-radius: 5px;
-	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	border: 0.5px solid #d8d8d8; 
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	/* overflow: hidden; */
 	z-index: 2;
@@ -30,12 +30,42 @@
 	top: 10px;
 	left: 220px;
 	border-radius: 5px;
-	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	border: 0.5px solid #d8d8d8;
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	/* overflow: hidden; */
 	z-index: 2;
 }
+
+#category3 {
+	float: left;
+	position: absolute;
+	top: 10px;
+	left: 615px;
+	border-radius: 5px;
+	border: 0.5px solid #d8d8d8;
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
+	background: #fff;
+	/* overflow: hidden; */
+	z-index: 2;
+}
+
+#category3 li {
+	float: left;
+	list-style: none;
+	width: 35px; px;
+	padding: 6px 0;
+	text-align: center;
+	cursor: pointer;
+	left: 10px;
+	z-index: 1;
+	
+}
+
+#category3 a {
+	text-decoration: none;
+}
+
 
 #list1 {
 
@@ -44,8 +74,8 @@
 	top: 10px;
 	left: -10px;
 	border-radius: 5px;
-	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	border: 0.5px solid #d8d8d8;
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	/* overflow: hidden; */
 	z-index: 2;
@@ -61,7 +91,7 @@
 	left: 50px;
 	border-radius: 5px;
 	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	/* overflow: hidden; */
 	z-index: 2;
@@ -75,7 +105,7 @@
 	left: 180px;
 	border-radius: 5px;
 	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow:  0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	margin-left : 5px;
 	/* overflow: hidden; */
@@ -90,7 +120,7 @@
 	left: 310px;
 	border-radius: 5px;
 	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow:  0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	margin-left : 5px;
 	/* overflow: hidden; */
@@ -105,7 +135,7 @@
 	left: 440px;
 	border-radius: 5px;
 	border: 1px solid #909090;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	margin-left : 5px;
 	/* overflow: hidden; */
@@ -119,7 +149,7 @@
 	float: left;
 	list-style: none;
 	width: 190px; px;
-	border-right: 1px solid #acacac;
+	border-right: 0.5px solid #d8d8d8;
 	padding: 6px 0;
 	text-align: left;
 	cursor: pointer;
@@ -132,7 +162,7 @@
 	float: left;
 	list-style: none;
 	width: 120px; px;
-	border-right: 1px solid #acacac;
+	border-right: 0.5px solid #d8d8d8;
 	padding: 6px 0;
 	text-align: left;
 	cursor: pointer;
@@ -271,16 +301,15 @@ body {
 
 .dropdown-content2 {
 	top: 35px;
-	left: 140px;
-	
-	/* display: none; */
+	left: 90px;
 	position: absolute;
 	background-color: #f9f9f9;
-
-	min-width: 100px;
+	min-width: 75px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-	overflow: scroll;
+/* 	height: 150px;
+	overflow: scroll; */	
+	display: block;
 }
 
 .dropdown-content a {
@@ -297,7 +326,28 @@ body {
 	display: block;
 }
 
+.dropdown-content2 a {
+	color: black;
+	padding: 5px 5px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content2 li {
+	color: black;
+	padding: 5px 5px;
+	text-decoration: none;
+	display: block;
+}
+
+
+
 .dropdown-content a:hover {
+	background-color: #f1f1f1;
+	text-decoration: none;
+}
+
+.dropdown-content2 a:hover {
 	background-color: #f1f1f1;
 	text-decoration: none;
 }

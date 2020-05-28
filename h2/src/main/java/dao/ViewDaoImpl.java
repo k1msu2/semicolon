@@ -6,10 +6,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vo.CatVo;
 import vo.CenterVo;
 import vo.CircleVo;
 import vo.DongVo;
 import vo.GuVo;
+import vo.OptionVo;
 
 @Repository
 public class ViewDaoImpl implements ViewDao{
@@ -46,4 +48,31 @@ public class ViewDaoImpl implements ViewDao{
 		return list;
 	}
 
+	@Override
+	public List<CatVo> catListAll() {
+		String statement = "";
+		List<CatVo> list = null;
+		statement = "resource.CatMapper.selectCatList";
+		list = session.selectList(statement);
+		System.out.println(list);
+		return list;
+	}
+	
+	@Override
+	public List<CircleVo> list500(String gu) {
+		String statement = "";
+		List<CircleVo> list = null;
+		statement = "resource.CafeMapper.selectCafeIn500";
+		list = session.selectList(statement, gu);
+		return list;
+	}
+
+	@Override
+	public List<CircleVo> listOption(OptionVo vo) {
+		String statement = "";
+		List<CircleVo> list = null;
+		statement = "resource.OptionMapper.selectOptionPosList";
+		list = session.selectList(statement, vo);
+		return list;
+	}
 }

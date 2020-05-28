@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.ViewDaoImpl;
 import vo.AptVo;
 import vo.CenterVo;
+import vo.OptionVo;
 
 @Controller
 public class ViewController {
@@ -47,4 +48,70 @@ public class ViewController {
 		System.out.println(new ObjectMapper().writeValueAsString(dao.dongListAll(gu)));
 		return new ObjectMapper().writeValueAsString(dao.dongListAll(gu));
 	}
+	
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat1",produces="applicaiton/json; charset=UTF-8")
+	public String cat1() throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.catListAll()));
+		return new ObjectMapper().writeValueAsString(dao.catListAll());
+	}
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat2",produces="applicaiton/json; charset=UTF-8")
+	public String cat2() throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.catListAll()));
+		return new ObjectMapper().writeValueAsString(dao.catListAll());
+	}
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat3",produces="applicaiton/json; charset=UTF-8")
+	public String cat3() throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.catListAll()));
+		return new ObjectMapper().writeValueAsString(dao.catListAll());
+	}
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat1/{catname}",produces="applicaiton/json; charset=UTF-8")
+	public String cat1one() throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.catListAll()));
+		return new ObjectMapper().writeValueAsString(dao.catListAll());
+	}
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat2/{catname}",produces="applicaiton/json; charset=UTF-8")
+	public String cat2one() throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.catListAll()));
+		return new ObjectMapper().writeValueAsString(dao.catListAll());
+	}
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat3/{catname}",produces="applicaiton/json; charset=UTF-8")
+	public String cat3one() throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.catListAll()));
+		return new ObjectMapper().writeValueAsString(dao.catListAll());
+	}
+	
+	// ajax 로 지역구 내 동 전송
+	@ResponseBody
+	@RequestMapping(value="/cat123",produces="applicaiton/json; charset=UTF-8")
+	public String cat123(String gu) throws Exception{
+		gu ="강남구";
+		System.out.println(new ObjectMapper().writeValueAsString(dao.list500(gu)));
+		return new ObjectMapper().writeValueAsString(dao.list500(gu));
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/cat123option",produces="applicaiton/json; charset=UTF-8")
+	public String cat123vo(OptionVo vo) throws Exception{
+		System.out.println(new ObjectMapper().writeValueAsString(dao.listOption(vo)));
+		return new ObjectMapper().writeValueAsString(dao.listOption(vo));
+	}
+	
 }

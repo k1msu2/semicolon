@@ -1,7 +1,7 @@
 // gu list
 function showProvince(){
 	
-	alert("showProvince");
+	//alert("showProvince");
 	//ajax - gu 정보 가져오기
 	var request = new XMLHttpRequest();
 	var formdata = new FormData();
@@ -15,7 +15,7 @@ function showProvince(){
 
 	request.onload = function(event) {
 		if (request.status == 200) {
-			alert("test!!!");
+			//alert("test!!!");
 			var str = request.responseText;
 			// 지역구 리스트 리턴
 			var gulist = JSON.parse(str);
@@ -83,7 +83,14 @@ function showGuCenter(gu, lat, lng) {
 
 }
 
-
+function showTown(){
+	// 리스트 삭제
+	if(document.querySelector('#list2').classList.toggle('display'))
+		document.querySelector('#list2').style.display='block';
+	else 
+		document.querySelector('#list2').style.display='none';
+	// 맵 위치 변경
+}
 
 //list
 function chooseProvince(gu, lat, lng){
@@ -98,19 +105,8 @@ function chooseProvince(gu, lat, lng){
 		document.querySelector('#list1').style.display='none';
 	// 맵 위치 변경
 }
-
-function showTown(){
-	// 리스트 삭제
-	if(document.querySelector('#list2').classList.toggle('display'))
-		document.querySelector('#list2').style.display='block';
-	else 
-		document.querySelector('#list2').style.display='none';
-	// 맵 위치 변경
-}
-
-
 //리스트에서  gu 클릭했을때 지도의 중심의 위치 map 만 변하도록.
-// 리스트 클릭할 떄
+//리스트 클릭할 떄
 function chooseTown(dong, lat, lng) {
 	map.setLevel(3, {anchor: new kakao.maps.LatLng(lat, lng)});
 	map.setCenter(new kakao.maps.LatLng(lat, lng));
@@ -123,3 +119,5 @@ function chooseTown(dong, lat, lng) {
 		document.querySelector('#list2').style.display='none';
 	
 }
+
+

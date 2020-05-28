@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.OptionMapper">
+	<select id="selectOptionPosList" parameterType="vo.OptionVo" resultType="vo.CircleVo">
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat
+		as aptlat, apt.lng as aptlng FROM apt_tb apt, cafe_tb cat where apt.gu
+		like '강남구' and ST_DWithin(apt.geom, cat.geom, 500, false)
+		intersect
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname,
+		apt.lat as aptlat, apt.lng as aptlng
+		FROM apt_tb apt, station_tb cat
+		where apt.gu like '강남구' and ST_DWithin(apt.geom, cat.geom, 500, false)
+	</select>
+</mapper>
+	
+
