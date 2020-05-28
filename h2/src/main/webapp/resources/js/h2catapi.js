@@ -119,39 +119,40 @@ function chooseCat3(name){
 
 function searchCat(){
 			
-	var guname = document.querySelector('#provName1').firstChild;
-	let dongname = document.querySelector('#townName1').firstChild;
-	let cat1name = document.querySelector('#cat1').firstChild;
-	let cat2name = document.querySelector('#cat2').firstChild;
-	let cat3name = document.querySelector('#cat3').firstChild;
-	console.log(guname);
-	console.log(cat1name);
-	console.log(cat2name);
-	console.log(cat3name);
-	
+	var guname = document.querySelector('#provName1').firstChild.textContent.trim();
+	let dongname = document.querySelector('#townName1').firstChild.textContent.trim();
+	let cat1name = document.querySelector('#cat1').firstChild.textContent.trim();
+	let cat2name = document.querySelector('#cat2').firstChild.textContent.trim();
+	let cat3name = document.querySelector('#cat3').firstChild.textContent.trim();
+
 	// ajax - 선택 된 카테고리	
 	var request = new XMLHttpRequest();
 	var formdata = new FormData();
 	
 	formdata.enctype='multipart/form-data';
 	formdata.method='post';
-	formdata.action='/h2/cat123';
+	formdata.action='/h2/cat123option';
+	formdata.append('gu', guname.toString());
+	formdata.append('dong', dongname.toString());
+	formdata.append('cat1name', cat1name.toString());
+	formdata.append('cat2name', cat2name.toString());
+	formdata.append('cat3name', cat3name.toString());
+
 	
 	request.open('post', formdata.action , true);
 	request.send(formdata);
 
 	request.onload = function(event) {
 		if (request.status == 200) {
-			alert("test");
+			//alert("test");
 			var str = request.responseText;
 			var result1 = JSON.parse(str);
 			console.log(result1);
 			//카카오 맵			
 			// 이전에 있던 마커 지우기
 			setMarkers(null);
-			for(i = 1; i < result1.length; i++){
+			for(i = 0; i < result1.length; i++){
 				addMarkerCircle(new kakao.maps.LatLng(result1[i].aptlat, result1[i].aptlng),result1[i].aptname);
-				//addMarker(new kakao.maps.LatLng(result1[i].lat, result1[i].lng));
 			}
 			
 		};

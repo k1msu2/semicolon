@@ -11,6 +11,7 @@ import vo.CenterVo;
 import vo.CircleVo;
 import vo.DongVo;
 import vo.GuVo;
+import vo.OptionTbVo;
 import vo.OptionVo;
 
 @Repository
@@ -70,9 +71,41 @@ public class ViewDaoImpl implements ViewDao{
 	@Override
 	public List<CircleVo> listOption(OptionVo vo) {
 		String statement = "";
-		List<CircleVo> list = null;
+		List<CircleVo> list = null;		
 		statement = "resource.OptionMapper.selectOptionPosList";
 		list = session.selectList(statement, vo);
 		return list;
+	}
+	@Override
+	public List<CircleVo> listOptionTbGu(OptionTbVo tbvo) {
+		String statement = "";
+		List<CircleVo> list = null;		
+		statement = "resource.OptionMapper.selectOptionGuList";
+		System.out.println(tbvo);
+		list = session.selectList(statement,tbvo);
+		return list;
+	}
+	@Override
+	public List<CircleVo> listOptionTbDong(OptionTbVo tbvo) {
+		String statement = "";
+		List<CircleVo> list = null;		
+		statement = "resource.OptionMapper.selectOptionDongList";
+		System.out.println(tbvo);
+		list = session.selectList(statement,tbvo);
+		return list;
+	}
+
+
+	@Override
+	public List<OptionTbVo> listNearGu(String gu) {
+		String statement="resource.OptionMapper.selectTbList";
+		List<OptionTbVo> list = session.selectList(statement, gu);
+		return list;
+	}
+
+	@Override
+	public List<CircleVo> listOptionTb(OptionTbVo tbvo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

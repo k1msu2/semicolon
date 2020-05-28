@@ -7,6 +7,7 @@ import vo.CenterVo;
 import vo.CircleVo;
 import vo.DongVo;
 import vo.GuVo;
+import vo.OptionTbVo;
 import vo.OptionVo;
 
 public interface ViewDao {
@@ -17,5 +18,9 @@ public interface ViewDao {
 	List<CatVo> catListAll();
 	List<CircleVo> list500(String gu);
 	List<CircleVo> listOption(OptionVo vo);
+	List<CircleVo> listOptionTb(OptionTbVo tbvo);
+	List<OptionTbVo> listNearGu(String gu);
+	List<CircleVo> listOptionTbGu(OptionTbVo tbvo);
+	List<CircleVo> listOptionTbDong(OptionTbVo tbvo);
 
 }

@@ -76,7 +76,7 @@ function showGuCenter(gu, lat, lng) {
 			
 			console.log(str);
 			listElement.innerHTML = str;			
-			document.querySelector('#townName1').innerHTML='&nbsp;' + donglist[0].dong + '&nbsp;';
+			/*document.querySelector('#townName1').innerHTML='&nbsp;' + donglist[0].dong + '&nbsp;';*/
 
 		};
 	}
@@ -94,7 +94,7 @@ function showTown(){
 
 //list
 function chooseProvince(gu, lat, lng){
-	map.setLevel(5, {anchor: new kakao.maps.LatLng(lat, lng)});
+	map.setLevel(7, {anchor: new kakao.maps.LatLng(lat, lng)});
 	map.setCenter(new kakao.maps.LatLng(lat, lng));
 	
 	document.querySelector('#provName1').innerHTML= '&nbsp;' + gu + '&nbsp;';
@@ -108,7 +108,7 @@ function chooseProvince(gu, lat, lng){
 //리스트에서  gu 클릭했을때 지도의 중심의 위치 map 만 변하도록.
 //리스트 클릭할 떄
 function chooseTown(dong, lat, lng) {
-	map.setLevel(3, {anchor: new kakao.maps.LatLng(lat, lng)});
+	map.setLevel(4, {anchor: new kakao.maps.LatLng(lat, lng)});
 	map.setCenter(new kakao.maps.LatLng(lat, lng));
 
 	document.querySelector('#townName1').innerHTML='&nbsp;' + dong + '&nbsp;';

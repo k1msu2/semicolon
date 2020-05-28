@@ -27,9 +27,9 @@
 		<div id="category">
 			<ul>
 				<li> &nbsp;서울시&nbsp;>
-				 <a href="#" id = "provName1" onclick="showProvince()">&nbsp;구선택&nbsp;</a>
+				 <a href="#" id = "provName1" onclick="showProvince()">&nbsp;전 체&nbsp;</a>
 				 >
-				 <a href="#" id = "townName1" onclick="showTown()">&nbsp;동선택&nbsp;</a>
+				 <a href="#" id = "townName1" onclick="showTown()">&nbsp;전 체&nbsp;</a>
 				</li>
 			</ul>
 		</div>
@@ -44,7 +44,7 @@
 		</ul>
 		
 		<ul id="category3">
-			<li><a href="#" id = "search" onclick="searchCat()">검색</a></li>
+			<li id="searchLoading"><a href="#" id = "search" onclick="searchCat()">검색</a><!-- &nbsp;<i class="fa fa-circle-o-notch fa-spin"></i> --></li>
 		</ul>
 		
 		
