@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resource.AptGraphMapper">
+	<select id="selectGraphData" parameterType="string" resultType="vo.AptGraphDataVo">
+		select aptname, date, 'y'||area yname, y, 'value'||area valname, value from aptgraph_tb where aptname like '%'||#{aptname}||'%'
+	</select>
+</mapper>
+	
+
+
+

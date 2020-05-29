@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resource.OptionMapper">
+<!-- cafe table 테스트용 -->
+	<select id="selectOptionPosList3" parameterType="vo.OptionVo" resultType="vo.CircleVo">
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat
+		as aptlat, apt.lng as aptlng FROM apt_tb apt, cafe_tb cat where apt.gu
+		like #{gu} and ST_DWithin(apt.geom, cat.geom, 500, false)
+		intersect
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat
+		as aptlat, apt.lng as aptlng FROM apt_tb apt, cafe_tb cat where apt.gu
+		like #{gu} and ST_DWithin(apt.geom, cat.geom, 500, false)
+		intersect
+		SELECT distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat
+		as aptlat, apt.lng as aptlng FROM apt_tb apt, cafe_tb cat where apt.gu
+		like #{gu} and ST_DWithin(apt.geom, cat.geom, 500, false)
+	</select>
+	
+	<select id="selectOptionTbList" parameterType="vo.OptionVo" resultType="vo.OptionTbVo">
+		
+	</select>
+	
+	<!-- 유저가 선택한 지역구 & 주변구 & 카테고리 1, 2, 3 -->
+	<select id="selectOptionGuList" parameterType="vo.OptionTbVo" resultType="vo.CircleVo"> 
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat1tb} cat where apt.gu like #{gu}
+		and split_part(cat.addr, ' ', 2) in (select neargu from gunear_tb where gu like #{gu})
+		and ST_DWithin(apt.geom, cat.geom, 100, false)
+		intersect
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat2tb} cat where apt.gu like #{gu}
+		and split_part(cat.addr, ' ', 2) in (select neargu from gunear_tb where gu like #{gu})
+		and ST_DWithin(apt.geom, cat.geom, 200, false)
+		intersect
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat3tb} cat where apt.gu like #{gu}
+		and split_part(cat.addr, ' ', 2) in (select neargu from gunear_tb where gu like #{gu})
+		and ST_DWithin(apt.geom, cat.geom, 300, false)
+	</select>
+	
+	<select id="selectOptionDongList" parameterType="vo.OptionTbVo" resultType="vo.CircleVo"> 
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat1tb} cat where apt.dong like #{dong}
+		and split_part(cat.addr, ' ', 2) in (select neargu from gunear_tb where gu like #{gu})
+		and ST_DWithin(apt.geom, cat.geom, 100, false)
+		intersect
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat2tb} cat where apt.dong like #{dong}
+		and split_part(cat.addr, ' ', 2) in (select neargu from gunear_tb where gu like #{gu})
+		and ST_DWithin(apt.geom, cat.geom, 200, false)
+		intersect
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat3tb} cat where apt.dong like #{dong}
+		and split_part(cat.addr, ' ', 2) in (select neargu from gunear_tb where gu like #{gu})
+		and ST_DWithin(apt.geom, cat.geom, 300, false)
+	</select>
+
+	<select id="selectOptionSeoulList" parameterType="vo.OptionTbVo" resultType="vo.CircleVo"> 
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat1tb} cat where ST_DWithin(apt.geom, cat.geom, 100, false)
+		intersect
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat2tb} cat where ST_DWithin(apt.geom, cat.geom, 200, false)
+		intersect
+		select distinct on(apt.name) apt.no as aptno, apt.name as aptname, apt.lat 
+		as aptlat, apt.lng as aptlng 
+		from apt_tb apt, ${cat3tb} cat where ST_DWithin(apt.geom, cat.geom, 300, false)
+	</select>
+	
+</mapper>
+	
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="resource.DongMapper">
+
+	<select id="selectDongList"  parameterType="string" resultType="vo.DongVo">
+		select dong, lat, lng from seouldong_tb where gu like '%'||#{gu}||'%'
+	</select>
+	
+</mapper>
+	
+
+
+
