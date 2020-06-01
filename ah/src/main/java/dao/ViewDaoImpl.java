@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import vo.AptGraphDataVo;
+import vo.CatDataVo;
 import vo.CatVo;
 import vo.CenterVo;
 import vo.CircleVo;
 import vo.DongVo;
 import vo.GuVo;
+import vo.OptionInfoTbVo;
 import vo.OptionTbVo;
 import vo.OptionVo;
 
@@ -126,5 +128,12 @@ public class ViewDaoImpl implements ViewDao{
 		return null;
 	}
 	
-
+	@Override
+	public List<CatDataVo> categoryList(OptionInfoTbVo vo){
+		String statement="resource.CatMapper.selectCatList";
+		List<CatDataVo> list = session.selectList(statement,vo);
+		return list;
+	}
+	
+	
 }

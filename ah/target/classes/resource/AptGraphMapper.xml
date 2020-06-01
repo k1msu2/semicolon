@@ -7,6 +7,15 @@
 	<select id="selectGraphData" parameterType="string" resultType="vo.AptGraphDataVo">
 		select aptname, date, 'y'||area yname, y, 'value'||area valname, value from aptgraph_tb where aptname like '%'||#{aptname}||'%'
 	</select>
+	<select id="selectGraphDataField" parameterType="string" resultType="vo.AptGraphDFVo">
+		select distinct on(area) 'y'||area as valuey, 'value'||area as value from aptgraph_tb where aptname like '%'||#{aptname}||'%'
+	</select>
+	<select id="selectGraphGuData" parameterType="vo.AptGraphSearchVo" resultType="vo.AptGraphGuVo">
+		select gu, dong, dealyear, perprice from gudonggraph_tb where gu like '%'||#{gu}||'%' and dealyear like '%'||#{dealyear}||'%'
+	</select>
+	<select id="selectGraphDongData" parameterType="vo.AptGraphSearchVo" resultType="vo.AptGraphDongVo">
+		select aptname, dealyear, perprice from dongaptgraph_tb where gu like '%'||#{gu}||'%' and dong like '%'||#{dong}||'%' and dealyear like '%'||#{dealyear}||'%'
+	</select>
 </mapper>
 	
 

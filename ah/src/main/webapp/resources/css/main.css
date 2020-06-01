@@ -8,16 +8,30 @@
 .map_wrap {
 	position: relative;
 	width: 100%;
-	height: 350px;
+	height: 700px;
+	/* overflow: hidden; */
 }
 
+.map_wrap2 {
+	position: relative;
+	width: 0%;
+	height: 700px;
+	float: left;
+}
+
+#map{
+	width: 100%; 
+	height: 80%; 
+	position: relative; 
+	/* overflow: hidden; */
+}
 #category {
 	float: left;
 	position: absolute;
 	top: 10px;
 	left: 10px;
 	border-radius: 5px;
-	border: 0.5px solid #d8d8d8; 
+	border: 0.5px solid #d8d8d8;
 	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	/* overflow: hidden; */
@@ -59,16 +73,13 @@
 	cursor: pointer;
 	left: 10px;
 	z-index: 1;
-	
 }
 
 #category3 a {
 	text-decoration: none;
 }
 
-
 #list1 {
-
 	float: left;
 	position: absolute;
 	top: 10px;
@@ -79,10 +90,8 @@
 	background: #fff;
 	/* overflow: hidden; */
 	z-index: 2;
-	display:none;
+	display: none;
 }
-
-
 
 #list2 {
 	float: left;
@@ -98,16 +107,16 @@
 	display: none;
 }
 
-#list3{
+#list3 {
 	float: left;
 	position: absolute;
 	top: 10px;
 	left: 180px;
 	border-radius: 5px;
 	border: 1px solid #909090;
-	box-shadow:  0 0.5px 0.5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
-	margin-left : 5px;
+	margin-left: 5px;
 	/* overflow: hidden; */
 	z-index: 2;
 	display: none;
@@ -120,9 +129,9 @@
 	left: 310px;
 	border-radius: 5px;
 	border: 1px solid #909090;
-	box-shadow:  0 0.5px 0.5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
 	background: #fff;
-	margin-left : 5px;
+	margin-left: 5px;
 	/* overflow: hidden; */
 	z-index: 2;
 	display: none;
@@ -133,17 +142,16 @@
 	position: absolute;
 	top: 10px;
 	left: 440px;
-	border-radius: 5px;
-	border: 1px solid #909090;
-	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
-	background: #fff;
-	margin-left : 5px;
+	border-radius: 5px; border : 1px solid #909090; box-shadow : 0 0.5px
+	0.5px rgba( 0, 0, 0, 0.1); background : #fff; margin-left : 5px;
 	/* overflow: hidden; */
 	z-index: 2;
 	display: none;
+	border: 1px solid #909090;
+	box-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.1);
+	background: #fff;
+	margin-left: 5px;
 }
-
-
 
 #category li {
 	float: left;
@@ -155,7 +163,7 @@
 	cursor: pointer;
 	left: 10px;
 	z-index: 1;
-	margin-left:15px;
+	margin-left: 15px;
 }
 
 #category2 li {
@@ -168,7 +176,7 @@
 	cursor: pointer;
 	left: 10px;
 	z-index: 1;
-	margin-left:10px;
+	margin-left: 10px;
 }
 
 #category li.on {
@@ -294,9 +302,8 @@ body {
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 	height: 150px;
-	overflow: scroll;	
+	overflow: scroll;
 	display: block;
-	
 }
 
 .dropdown-content2 {
@@ -307,8 +314,8 @@ body {
 	min-width: 75px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
-/* 	height: 150px;
-	overflow: scroll; */	
+	/* 	height: 150px;
+	overflow: scroll; */
 	display: block;
 }
 
@@ -340,8 +347,6 @@ body {
 	display: block;
 }
 
-
-
 .dropdown-content a:hover {
 	background-color: #f1f1f1;
 	text-decoration: none;
@@ -354,6 +359,7 @@ body {
 
 .dropdown:hover .dropdown-content {
 	/* display: block; */
+	
 }
 
 .dropdown:hover .dropbtn {
@@ -361,12 +367,102 @@ body {
 }
 
 #chartdiv1 {
-  width: 50%;
-  height: 300px;
-  float: left;
+	width: 50%;
+	height: 300px;
+	float: left;
 }
+
 #chartdiv2 {
-  width: 50%;
-  height: 300px;
-  float: left;
+	width: 50%;
+	height: 300px;
+	float: left;
+}
+
+#chartdiv3 {
+	width: 100%;
+	height: 700px;
+	float: left;
+}
+
+#chartdiv4 {
+	width: 100%;
+	height: 700px;
+	float: left;
+}
+
+.area {
+	position: absolute;
+	background: #fff;
+	border: 1px solid #888;
+	border-radius: 3px;
+	font-size: 12px;
+	top: -5px;
+	left: 15px;
+	padding: 2px;
+}
+
+.info {
+	font-size: 12px;
+	padding: 5px;
+}
+
+.info .title {
+	font-weight: bold;
+}
+
+.Shadow .toggle {
+	border: 0.5px solid #d8d8d8;
+	box-shadow: 0 0.7px 0.7px rgba(0, 0, 0, 0.1);
+	background: #fff;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: 25px;
+	height: 54px;
+	font-size: 0;
+	line-height: 0;
+	cursor: pointer;
+	margin: auto;
+	background: url(/ah/resources/images/img_navi2x.png) no-repeat 0 0;
+	background-position: -5px -26px;
+	background-size: auto;
+}
+
+.Shadow {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 20px; 
+	z-index : 10;
+	height: 100%;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  right:0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  padding-top: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+}
+
+#myProgress {
+  width: 100%;
+  background-color: #c0c0c0;
+}
+
+#myBar {
+  width: 1%;
+  height: 10px;
+  background-color: #0080ff;
 }

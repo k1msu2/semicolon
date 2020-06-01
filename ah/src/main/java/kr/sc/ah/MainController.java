@@ -15,6 +15,15 @@ public class MainController {
 	public String main2() {
 		return "main";
 	}
+	
+	@RequestMapping("/test2")
+	public String test2() {
+		return "test2";
+	}
 
+	@RequestMapping("/slide")
+	public String slide() {
+		return "slide";
+	}
 
 }

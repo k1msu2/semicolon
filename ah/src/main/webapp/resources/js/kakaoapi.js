@@ -39,8 +39,8 @@ function addMarker(position, addr, name, no, markerImage) {
 	});
 	kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker,
 			infowindow));
-	kakao.maps.event.addListener(marker, 'mouseout',
-			makeOutListener(infowindow));
+/*	kakao.maps.event.addListener(marker, 'mouseout',
+			makeOutListener(infowindow));*/
 
 	// 마커가 지도 위에 표시되도록 설정합니다
 	// marker.setMap(map);
@@ -111,11 +111,19 @@ function addMarkerCircle(position1, position2, name) {
 	 */
 
 	// 마커가 지도 위에 표시되도록 설정합니다
+	
 	marker1.setMap(map);
+	
 	//map.setCenter(position1);
 	// marker2.setMap(map);
 	// 생성된 마커를 배열에 추가합니다
 	markers.push(marker1);
 	markers.push(drawingCircle);
+	// clusterer.addMarker(marker1);
 	// markers.push(marker2);
 }
+
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+	closeAllPopup();
+});
+

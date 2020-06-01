@@ -1,122 +1,94 @@
-// gu list
-function showProvince(){
-	
-	//alert("showProvince");
-	//ajax - gu 정보 가져오기
+function mainmap(){	
+ 	for (var i = 0, len = areas.length; i < len; i++) {
+ 	    displayArea(areas[i]);
+ 	   //console.log(areas[i]);
+ 	}
+}
+
+
+function displayArea(area) {
+
+    // 다각형을 생성합니다 
+    var polygon = new kakao.maps.Polygon({
+        map: map, // 다각형을 표시할 지도 객체
+        path: area.path,
+        strokeWeight: 2,
+        strokeColor: '#004c80',
+        strokeOpacity: 0.8,
+        fillColor: '#fff',
+        fillOpacity: 0.7 
+    });
+
+    // 다각형에 mouseover 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 변경합니다 
+    // 지역명을 표시하는 커스텀오버레이를 지도위에 표시합니다
+    kakao.maps.event.addListener(polygon, 'mouseover', function(mouseEvent) {
+        polygon.setOptions({fillColor: '#09f'});
+
+        customOverlay.setContent('<div class="area">' + area.name + '</div>');
+        
+        customOverlay.setPosition(mouseEvent.latLng); 
+        customOverlay.setMap(map);
+    });
+
+    // 다각형에 mousemove 이벤트를 등록하고 이벤트가 발생하면 커스텀 오버레이의 위치를 변경합니다 
+    kakao.maps.event.addListener(polygon, 'mousemove', function(mouseEvent) {
+        
+        customOverlay.setPosition(mouseEvent.latLng); 
+    });
+
+    // 다각형에 mouseout 이벤트를 등록하고 이벤트가 발생하면 폴리곤의 채움색을 원래색으로 변경합니다
+    // 커스텀 오버레이를 지도에서 제거합니다 
+    kakao.maps.event.addListener(polygon, 'mouseout', function() {
+    	polygon.setOptions({fillColor: '#fff'});
+        customOverlay.setMap(null);
+    }); 
+
+    // 다각형에 click 이벤트를 등록하고 이벤트가 발생하면 다각형의 이름과 면적을 인포윈도우에 표시합니다 
+    kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
+        var content = '<div class="info">' + 
+                    '   <div class="title">' + area.name + '</div>' +
+                    '</div>';
+
+        infowindow.setContent(content); 
+        infowindow.setPosition(mouseEvent.latLng); 
+        infowindow.setMap(map);
+        
+        // center값 받아서 줌인
+        clickGu(area.name);
+        
+            	
+    });
+    
+    kakao.maps.event.addListener(map, 'idle', function() {
+	    // do something
+    
+		var level = map.getLevel();
+		console.log(customOverlay.getVisible());
+		if(level < 8)  polygon.setOptions({ fillOpacity: 0});
+		else polygon.setOptions({ fillOpacity: 0.7});
+	});
+}
+
+
+//gu list
+function clickGu(gu){	
 	var request = new XMLHttpRequest();
 	var formdata = new FormData();
 	
 	formdata.enctype='multipart/form-data';
 	formdata.method='post';
-	formdata.action='/ah/gu';
+	formdata.action='/ah/center/gu/'+gu;
 	
-	request.open('post', '/ah/gu', true);
-	request.send(formdata);
-
-	request.onload = function(event) {
-		if (request.status == 200) {
-			//alert("test!!!");
-			var str = request.responseText;
-			// 지역구 리스트 리턴
-			var gulist = JSON.parse(str);
-			// 지역구 리스트 출력
-			//console.log(gulist);
-			var listElement = document.querySelector('#contentList1');
-			var str = '';
-			console.log(gulist);
-			for(i = 0; i < gulist.length; i++){
-				str += "<a href='#' onclick='showGuCenter("+"\""+gulist[i].gu+"\""+","+gulist[i].lat+","+gulist[i].lng+")'>"+gulist[i].gu+"</a>";
-			}
-			listElement.innerHTML = str;
-			
-		};
-	}
-			
-	
-	if(document.querySelector('#list1').classList.toggle('display'))
-		document.querySelector('#list1').style.display='block';
-	else 
-		document.querySelector('#list1').style.display='none';
-
-}
-
-// 구 단위로 클릭했을 때
-// 리스트에서  gu 클릭했을때 지도의 중심의 위치 map 만 변하도록.
-function showGuCenter(gu, lat, lng) {	
-	
-	//alert("showGuCenter");
-	// 리스트 닫기
-	chooseProvince(gu, lat, lng);
-	
-	//contentList1 text 데이터 가져오기	
-	var request = new XMLHttpRequest();
-	var formdata = new FormData();
-	
-	formdata.enctype='multipart/form-data';
-	formdata.method='post';
-	formdata.action='/ah/gu/'+gu;
-	
-	request.open('post', '/ah/gu/'+gu, true);
+	request.open('post', '/ah/center/gu/'+gu, true);
 	request.send(formdata);
 
 	request.onload = function(event) {
 		if (request.status == 200) {
 			var str = request.responseText;
-			// 지역구 리스트 리턴
-			var donglist = JSON.parse(str);
-			console.log(donglist);
-			// 지역구 리스트 출력
-			var listElement = document.querySelector('#contentList2');
-			// db gu list 출력
-			var str = '';
-			for(i = 0; i < donglist.length; i++){
-				str += "<a href='#' onclick='chooseTown("+"\""+donglist[i].dong+"\""+","+donglist[i].lat+","+donglist[i].lng+")'>"+donglist[i].dong+"</a>";
-			}
-			
-			console.log(str);
-			listElement.innerHTML = str;			
-			document.querySelector('#townName1').innerHTML='&nbsp;전 체&nbsp;';
-
+			var gudata = JSON.parse(str);
+			showGuCenter(gudata.name, gudata.lat, gudata.lng);
+			closeAllPopup();				
 		};
 	}
-
 }
-
-function showTown(){
-	// 리스트 삭제
-	if(document.querySelector('#list2').classList.toggle('display'))
-		document.querySelector('#list2').style.display='block';
-	else 
-		document.querySelector('#list2').style.display='none';
-	// 맵 위치 변경
-}
-
-//list
-function chooseProvince(gu, lat, lng){
-	map.setLevel(7, {anchor: new kakao.maps.LatLng(lat, lng)});
-	map.setCenter(new kakao.maps.LatLng(lat, lng));
-	
-	document.querySelector('#provName1').innerHTML= '&nbsp;' + gu + '&nbsp;';
-	// 리스트 삭제
-	if(document.querySelector('#list1').classList.toggle('display'))
-		document.querySelector('#list1').style.display='block';
-	else 
-		document.querySelector('#list1').style.display='none';
-	// 맵 위치 변경
-}
-//리스트에서  gu 클릭했을때 지도의 중심의 위치 map 만 변하도록.
-//리스트 클릭할 떄
-function chooseTown(dong, lat, lng) {
-	map.setLevel(4, {anchor: new kakao.maps.LatLng(lat, lng)});
-	map.setCenter(new kakao.maps.LatLng(lat, lng));
-
-	document.querySelector('#townName1').innerHTML='&nbsp;' + dong + '&nbsp;';
-	// 리스트 삭제
-	if(document.querySelector('#list2').classList.toggle('display'))
-		document.querySelector('#list2').style.display='block';
-	else 
-		document.querySelector('#list2').style.display='none';
-	
-}
-
 

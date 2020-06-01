@@ -3,11 +3,13 @@ package dao;
 import java.util.List;
 
 import vo.AptGraphDataVo;
+import vo.CatDataVo;
 import vo.CatVo;
 import vo.CenterVo;
 import vo.CircleVo;
 import vo.DongVo;
 import vo.GuVo;
+import vo.OptionInfoTbVo;
 import vo.OptionTbVo;
 import vo.OptionVo;
 
@@ -25,5 +27,6 @@ public interface ViewDao {
 	List<CircleVo> listOptionTbDong(OptionTbVo tbvo);
 	List<CircleVo> listOptionTbSeoul(OptionTbVo tbvo);
 	List<AptGraphDataVo> listGraphData();
+	List<CatDataVo> categoryList(OptionInfoTbVo vo);
 
 }

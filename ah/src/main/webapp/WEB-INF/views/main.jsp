@@ -10,7 +10,7 @@
 
 <body>
 
-	<div class="topnav">
+	<!-- 	<div class="topnav">
 		<a class="active" href="#home">AH!</a> <a href="#about">APT</a> <a
 			href="#contact">HERE</a>
 		<div class="search-container">
@@ -20,11 +20,35 @@
 			</form>
 		</div>
 	</div>
+ -->
+	<script>
+		function showDetail() {
+			if (document.querySelector('#shadow').classList.toggle('display')) {
+				document.querySelector('.toggle').style.backgroundPosition = '-7px -157px';
+				document.querySelector('.map_wrap').style.width = '100%';
+				document.querySelector('.toggle').style.left = '-390px';
+				document.querySelector('#map').style.left = '-390px';
+				document.querySelector(".sidebar").style.width = "390px";
+				/* document.querySelector("#map").style.marginRight = "250px"; */
 
+			} else {
+				document.querySelector('.toggle').style.backgroundPosition = '-5px -26px';
+				document.querySelector('.map_wrap').style.width = '100%';
+				document.querySelector('.toggle').style.left = '0px';
+				document.querySelector('#map').style.left = '0px';
+				document.querySelector(".sidebar").style.width = "0";
+				/* document.querySelector("main").style.marginRight = "0"; */
+			}
+		}
+	</script>
 
 	<div class="map_wrap">
-		<div id="map"
-			style="width: 100%; height: 80%; position: relative; overflow: hidden;"></div>
+		<div id="map"></div>
+		<div id="shadow" class="Shadow" style="height: 90%;">
+			<span id="shadow.toggle" class="toggle" onclick="showDetail()"></span>
+		</div>
+		<div class="sidebar">영기야 여기야!!</div>
+
 		<div id="category">
 			<ul>
 				<li>&nbsp;서울시&nbsp;> <a href="#" id="provName1"
@@ -45,10 +69,8 @@
 
 		<ul id="category3">
 			<li id="searchLoading"><a href="#" id="search"
-				onclick="searchCat()">검색</a>
-			<!-- &nbsp;<i class="fa fa-circle-o-notch fa-spin"></i> --></li>
+				onclick="searchCat()">검색</a> <!-- &nbsp;<i class="fa fa-circle-o-notch fa-spin"></i> --></li>
 		</ul>
-
 
 		<div class="dropdown" id="list1">
 			<div class="dropdown-content" id="contentList1"></div>
@@ -65,16 +87,19 @@
 		<div class="dropdown" id="list5">
 			<div class="dropdown-content2" id="contentList5"></div>
 		</div>
-	
-	
-	<button onclick="showGraph1('DMC마포청구')">DMC마포청구</button>
-	<button onclick="showGraph1('강남더샵포레스트')">강남더샵포레스트</button>
-	<div id="chartdiv">			
-<!-- 		<div id="chartdiv1" style="display:none;"></div>
-		<div id="chartdiv2" style="display:none;"></div> -->
-		<div id="chartdiv1"></div>
-		<div id="chartdiv2"></div>
-		</div><!-- map div end -->
+
+		<button onclick="showAptGraph('chartdiv1', 'e편한세상마포리버파크')">e편한세상마포리버파크</button>
+		<button onclick="showAptGraph('chartdiv2', '래미안공덕3차')">래미안공덕3차</button>
+		<button onclick="showGuGraph('chartdiv3', '강남구')">강남구</button>
+		<button onclick="showDongGraph('chartdiv4', '강남구', '역삼동')">역삼동</button>
+		
+		<div id="chartdiv">
+			<div id="chartdiv1"></div>
+			<div id="chartdiv2"></div>
+			<div id="chartdiv3"></div>
+			<div id="chartdiv4"></div>
+		</div>
+
 	</div>
 
 	<!-- 변수 선언은 제일 나중에, 태그 로딩 후.. -->
@@ -82,109 +107,13 @@
 	<script src="<c:url value="/resources/js/kakaoapi.js"/>"></script>
 	<script src="<c:url value="/resources/js/h2api.js"/>"></script>
 	<script src="<c:url value="/resources/js/h2catapi.js"/>"></script>
-	
-	
-	<script>
-	function showGraph1(aptname){
-		
-		//ajax 로 호출
-		var request = new XMLHttpRequest();
-		var formdata = new FormData();
-		
-		formdata.enctype='multipart/form-data';
-		formdata.method='post';
-		formdata.action='/ah/graph1/' + aptname;
-		console.log(formdata.action);
-		request.open('post', formdata.action, true);
-		request.send(formdata);
-	
-		request.onload = function(event) {
-			if (request.status == 200) {
-				alert("test!!!");
-				var str = request.responseText;
-				var rdata= JSON.parse(str); // db 데이터로 둬야함.
-				
-				console.log(rdata);
-				
-				am4core.ready(function() {
+	<script src="<c:url value="/resources/js/graph1.js"/>"></script>
+	<script src="<c:url value="/resources/js/graph2.js"/>"></script>
+	<script src="<c:url value="/resources/js/graph3.js"/>"></script>
 
-					// Themes begin
-					am4core.useTheme(am4themes_animated);
-					// Themes end
-
-					// Create chart instance
-					var chart = am4core.create("chartdiv1", am4charts.XYChart);
-							
-					chart.data = rdata;
-					
-					// Create axes
-					var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-					dateAxis.renderer.grid.template.location = 0;
-					dateAxis.renderer.minGridDistance = 50;
-					dateAxis.renderer.grid.template.disabled = true;
-					dateAxis.renderer.fullWidthTooltip = true;
-
-					// Create value axis
-					var yAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-					// Create series
-					var series1 = chart.series.push(new am4charts.LineSeries());
-					series1.dataFields.dateX = "date";
-					series1.dataFields.valueY = "y84.6";
-					series1.dataFields.value = "value84.6";
-					series1.strokeWidth = 2;
-
-					var bullet1 = series1.bullets.push(new am4charts.CircleBullet());
-					series1.heatRules.push({
-						target : bullet1.circle,
-						min : 0,
-						max : 5,
-						property : "radius"
-					});
-
-					bullet1.tooltipText = "{date} 평균실거래가: [bold]{valueY}[/]";
-
-					var series2 = chart.series.push(new am4charts.LineSeries());
-					series2.dataFields.dateX = "date";
-					series2.dataFields.valueY = "y84.9";
-					series2.dataFields.value = "value84.9";
-					series2.strokeWidth = 2;
-
-					var bullet2 = series2.bullets.push(new am4charts.CircleBullet());
-					series2.heatRules.push({
-						target : bullet2.circle,
-						min : 0,
-						max : 5,
-						property : "radius"
-					});
-
-					bullet2.tooltipText = "{date} 평균실거래가: [bold]{valueY}[/]";
-
-					//scrollbars
-					chart.scrollbarX = new am4core.Scrollbar();
-					chart.scrollbarY = new am4core.Scrollbar();
-
-				});
-
-				
-			};
-		}
-			
-		
-	
-	}
-	function showGraph2(){
-		//document.querySelector('#chartdiv2').style.display='block';
-	}
-	</script>
-	
-<%-- 	<jsp:include page="graph1.jsp" />
-	<jsp:include page="graph2.jsp" />
- --%>	
 	<script>
 		window.onload = function() {
-			// 강남구 역삼동을 센터로 디비 커넥션을 만들어줘야 리스트가 바로 나옴
-			// 제일 첫화면을 뭘 넣을까.. 서울시 전체 지도 레이아웃??
+			
 		};
 	</script>
 
